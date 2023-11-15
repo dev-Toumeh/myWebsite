@@ -1,0 +1,34 @@
+version: "3"
+services:
+
+  # httpd-Apache
+  app:
+    build:
+      dockerfile: ./docker/httpd/Dockerfile
+    user: "1000:1000"
+    container_name: app-container
+    ports:
+      - "80:80"
+    extra_hosts:
+      - "t3coredev:172.0.0.1"
+    volumes:
+      - ./:/var/www/t3coredev
+      - ./docker/httpd/etc/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/httpd/conf/apache2.conf:/etc/apache2/apache2.conf
+      - ./docker/httpd/sites-available/t3coredev.conf:/etc/apache2/sites-available/t3coredev.conf
+    command: >
+      bash -c "a2ensite t3coredev
+      && apache2-foreground"
+
+  #Database
+  database:
+    image: mariadb:10.9.8-jammy
+    container_name: db-container
+#    volumes:
+#      - ./docker/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: typo3
