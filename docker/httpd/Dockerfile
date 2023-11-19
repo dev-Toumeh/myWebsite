@@ -1,6 +1,11 @@
 FROM php:8.1.25-apache-bullseye
 WORKDIR /var/www/t3coredev
 
+# Define a build-time variables
+ARG USERNAME=naseem
+ARG GID=1000
+ARG UID=1000
+
 ## Install system dependencies
 RUN apt-get update \
     && apt-get install -y \
@@ -43,7 +48,9 @@ RUN docker-php-ext-configure gd \
     gd \
     zip \
     xml \
-    dom
+    dom \
+    pdo_mysql \
+    opcache
 
 ## install ImageMagick https://www.linuxcapable.com/how-to-install-imagemagick-on-debian-linux/
 #RUN git clone https://github.com/ImageMagick/ImageMagick.git /usr/local/src/ImageMagick \
@@ -63,7 +70,8 @@ RUN a2enmod alias \
     && a2enmod setenvif
 
 # Create a user with UID 1000 and GID 1000
-RUN groupadd -g 1000 naseem \
-    && useradd -r -u 1000 -g naseem naseem
+RUN groupadd -g ${GID} ${USERNAME} \
+    && useradd -r -u ${UID} -g ${USERNAME} ${USERNAME}
 
-RUN chown -R naseem:naseem /etc/apache2 /var/lib/apache2
+# change the owner of some directories for development purposes
+RUN chown -R ${USERNAME}:${USERNAME} /etc/apache2 /var/lib/apache2 /var/www

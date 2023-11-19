@@ -5,7 +5,7 @@ services:
   app:
     build:
       dockerfile: ./docker/httpd/Dockerfile
-    user: "1000:1000"
+    user: ${CONTAINER_USER}:${CONTAINER_USER}
     container_name: app-container
     ports:
       - "80:80"
@@ -18,14 +18,17 @@ services:
       - ./docker/httpd/sites-available/t3coredev.conf:/etc/apache2/sites-available/t3coredev.conf
     command: >
       bash -c "a2ensite t3coredev
+      && chown -R ${CONTAINER_USER}:${CONTAINER_USER} /var/www
       && apache2-foreground"
 
   #Database
   database:
-    image: mariadb:10.9.8-jammy
+    build:
+      dockerfile: ./docker/mysql/Dockerfile
+    user: ${CONTAINER_USER}:${CONTAINER_USER}
     container_name: db-container
-#    volumes:
-#      - ./docker/mysql:/var/lib/mysql
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
     ports:
       - "3306:3306"
     restart: unless-stopped
