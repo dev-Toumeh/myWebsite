@@ -11,9 +11,13 @@ return [
     'DB' => [
         'Connections' => [
             'Default' => [
-                'charset' => 'utf8',
-                'driver' => 'pdo_sqlite',
-                'path' => '/var/www/t3coredev/var/sqlite/cms-d56c1c69.sqlite',
+                'charset' => 'utf8mb4',
+                'dbname' => 'typo3',
+                'driver' => 'pdo_mysql',
+                'host' => 'database',
+                'password' => '',
+                'port' => 3306,
+                'user' => 'root',
             ],
         ],
     ],
@@ -102,8 +106,13 @@ return [
         'exceptionalErrors' => 12290,
         'sitename' => 't3coredev',
         'systemMaintainers' => [
+            2,
+            1,
             1,
         ],
         'trustedHostsPattern' => '.*.*',
+    ],
+    'TableMapping' => [
+        'sys_log' => 'Syslog',
     ],
 ];
