@@ -1,0 +1,2 @@
+@import "EXT:mywebsite/Configuration/TypoScript/Setup/*.typoscript"
+

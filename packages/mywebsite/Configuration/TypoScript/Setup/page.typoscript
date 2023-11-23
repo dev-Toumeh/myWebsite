@@ -1,0 +1,47 @@
+config {
+    contentObjectExceptionHandler = 0
+}
+page = PAGE
+
+page.meta {
+    viewport = width=device-width, initial-scale=1.0
+}
+page.headerData {
+    10 = TEXT
+    10.value = <meta charset="utf-8">
+
+    20 = TEXT
+    20.value = <link rel="preconnect" href="https://fonts.gstatic.com">
+}
+
+page.includeCSS {
+    BootstrapStylesheet = EXT:mywebsite/Resources/Public/css/style.css
+    lightbox            = EXT:mywebsite/Resources/Public/lib/lightbox/css/lightbox.min.css
+    owlcarousel         = EXT:mywebsite/Resources/Public/lib/owlcarousel/assets/owl.carousel.min.css
+    font-awesome        = https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css
+    font-google         = https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap
+}
+page.includeJSFooter {
+    jquery = https://code.jquery.com/jquery-3.4.1.min.js
+    bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js
+
+    typed = EXT:mywebsite/Resources/Public/lib/typed/typed.min.js
+    easing = EXT:mywebsite/Resources/Public/lib/easing/easing.min.js
+    waypoints = EXT:mywebsite/Resources/Public/lib/waypoints/waypoints.min.js
+    owlcarousel = EXT:mywebsite/Resources/Public/lib/owlcarousel/owl.carousel.min.js
+    isotope = EXT:mywebsite/Resources/Public/lib/isotope/isotope.pkgd.min.js
+    lightbox = EXT:mywebsite/Resources/Public/lib/lightbox/js/lightbox.min.js
+    jqBootstrapValidation = EXT:mywebsite/Resources/Public/mail/jqBootstrapValidation.min.js
+    contact = EXT:mywebsite/Resources/Public/mail/contact.js
+    main = EXT:mywebsite/Resources/Public/js/main.js
+}
+page.shortcutIcon = EXT:mywebsite/Resources/Public/icons/reading.ico
+page {
+    10 = FLUIDTEMPLATE
+    10 {
+        file = EXT:mywebsite/Resources/Private/Template/Default.html
+        layoutRootPath = EXT:mywebsite/Resources/Private/Layout
+    }
+}
+
+
