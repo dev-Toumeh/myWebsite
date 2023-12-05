@@ -46,3 +46,13 @@ public/.htaccess
 /var
 /vendor/*
 /config/sites/*
+/local_files
+/docker/mysql/*
+/packages/mywebsite/Resources/Private/template-html-files/assets/favicon.ico
+/packages/mywebsite/Resources/Private/template-html-files/assets/profile.png
+/packages/mywebsite/Resources/Private/template-html-files/css/styles.css
+/packages/mywebsite/Resources/Private/template-html-files/js/scripts.js
+/packages/mywebsite/Resources/Private/template-html-files/contact.html
+/packages/mywebsite/Resources/Private/template-html-files/index.html
+/packages/mywebsite/Resources/Private/template-html-files/projects.html
+/packages/mywebsite/Resources/Private/template-html-files/resume.html

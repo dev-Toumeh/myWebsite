@@ -16,6 +16,9 @@ RUN apt-get update \
     libjpeg62-turbo-dev \
     libpng-dev \
     libjpeg-dev \
+    libtiff-dev \
+    libgif-dev \
+    liblcms2-dev \
     libltdl-dev \
     libicu-dev \
     libmemcached-dev \
@@ -53,12 +56,12 @@ RUN docker-php-ext-configure gd \
     opcache
 
 ## install ImageMagick https://www.linuxcapable.com/how-to-install-imagemagick-on-debian-linux/
-#RUN git clone https://github.com/ImageMagick/ImageMagick.git /usr/local/src/ImageMagick \
-#    cd /usr/local/src/ImageMagick \
-#    ./configure \
-#    make \
-#    make install \
-#    sudo ldconfig /usr/local/lib
+RUN git clone https://github.com/ImageMagick/ImageMagick.git /usr/local/src/ImageMagick && \
+    cd /usr/local/src/ImageMagick && \
+    ./configure --with-modules && \
+    make && \
+    make install && \
+    ldconfig /usr/local/lib
 
 RUN a2enmod alias \
     && a2enmod authz_core \
